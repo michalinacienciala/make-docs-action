@@ -18,6 +18,6 @@ outputs:
     description: The list of space-separated compilation outputs #?
 runs:
   using: 'docker'
-  image: 'keepnetwork/texlive:3'
+  image: 'docker://keepnetwork/texlive:3'
   args:
     - ${{ inputs.workDir }}
