@@ -1,0 +1,23 @@
+name: "Generate docs from Makefile"
+description: "Generates files based on specified Makefile config"
+inputs:
+  workDir:  
+    description: "Directory containing Makefile file"
+    required: false
+    default: "."
+  files:  
+    description: "Files to compile, can include * and ** globs."
+    required: false
+    default: "Makefile"
+  make-docs-args:
+    description: Additional arguments to pass the `make docs` command.
+    required: false
+    default: ''
+outputs:
+  make-docs-artifacts:
+    description: The list of space-separated compilation outputs #?
+runs:
+  using: 'docker'
+  image: 'keepnetwork/texlive:3'
+  args:
+    - ${{ inputs.workDir }}
