@@ -1,14 +1,14 @@
-name: "Generate docs from Makefile"
-description: "Generates files based on specified Makefile config"
+name: Generate docs from Makefile
+description: Generates files based on specified Makefile config
 inputs:
   workDir:  
-    description: "Directory containing Makefile file"
+    description: Directory containing Makefile file
     required: false
-    default: "."
+    default: '.'
   files:  
-    description: "Files to compile, can include * and ** globs."
+    description: Files to compile, can include * and ** globs.
     required: false
-    default: "Makefile"
+    default: 'Makefile'
   make-docs-args:
     description: Additional arguments to pass the `make docs` command.
     required: false
