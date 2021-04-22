@@ -21,3 +21,5 @@ runs:
   image: 'docker://keepnetwork/texlive:3'
   args:
     - ${{ inputs.workDir }}
+    - ${{ inputs.files }}
+    - ${{ inputs.make-docs-args }}
