@@ -1,0 +1,38 @@
+name: Sed
+
+on:
+  push:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Date
+        run: date > /tmp/test
+      
+      - name: Cat
+        run: cat pkg/chain/gen/ethereum/Makefile
+
+      # DOES NOT WORK
+      # - name: Sed
+      #   run: |
+      #     sed -i '' 's/--allow-paths ${solidity_dir}/--allow-paths $(realpath ${SOLIDITY_DIR}\/..\/..\/)/g' pkg/chain/gen/*/Makefile
+
+      # WORKS OK
+      # - name: Sed
+      #   run: |
+      #     sed -i 's/--allow-paths ${solidity_dir}/--allow-paths $(realpath ${SOLIDITY_DIR}\/..\/..\/)/g' pkg/chain/gen/*/Makefile
+
+      - name: Sed
+        run: |
+          TMP_FILE=$(mktemp /tmp/Makefile.XXXXXXXXXX)
+          sed 's/--allow-paths ${solidity_dir}/--allow-paths $(realpath ${SOLIDITY_DIR}\/..\/..\/)/g' pkg/chain/gen/*/Makefile > $TMP_FILE
+          mv $TMP_FILE pkg/chain/gen/ethereum/Makefile
+
+      - name: Cat
+        run: cat pkg/chain/gen/ethereum/Makefile
