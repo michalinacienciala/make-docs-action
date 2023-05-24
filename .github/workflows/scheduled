@@ -1,0 +1,11 @@
+name: Scheduled
+
+on:
+  schedule:
+    - cron: "0 0 * * *"
+
+jobs:
+  do-something:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Hello"
